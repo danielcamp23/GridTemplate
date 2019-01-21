@@ -16,6 +16,7 @@ class Grid
 public:
 	Grid(const size_t width = 3, const size_t height = 3);
 	void setCell(size_t x, size_t y, const string& cellName, const T& inCell);
+	pair<string, T>& getCell(size_t x, size_t y);
 	void addCell(size_t x, size_t y, const T& inCell);
 	string getInfoAt(size_t x, size_t y);
 
@@ -38,6 +39,11 @@ Grid<T>::Grid(const size_t width, const size_t height) : kWidth(width), kHeight(
 template <typename T>
 void Grid<T>::setCell(size_t x, size_t y, const string& cellName, const T& inCell) {
 	cells[x][y] = make_pair(cellName, inCell);
+}
+
+template <typename T>
+pair<string, T>& Grid<T>::getCell(size_t x, size_t y) {
+	return cells[x][y];
 }
 
 template <typename T>

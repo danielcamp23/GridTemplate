@@ -14,9 +14,9 @@ class Grid<string>
 public:
 	Grid(const size_t width = 3, const size_t height = 3);
 	void setCell(size_t x, size_t y, const string& cellName, const string& inCell);
+	pair<string, string>& getCell(size_t x, size_t y);
 	void addCell(size_t x, size_t y, const string& inCell);
 	string getInfoAt(size_t x, size_t y);
-	size_t getHeight();
 private:
 	const size_t kWidth;
 	const size_t kHeight;
@@ -31,14 +31,14 @@ Grid<string>::Grid(const size_t width, const size_t height) : kWidth(width), kHe
 	}
 }
 
-size_t Grid<string>::getHeight() {
-	return kHeight;
-}
 
 void Grid<string>::setCell(size_t x, size_t y, const string& cellName, const string& inCell) {
 	cells[x][y] = make_pair(cellName, inCell);
 }
 
+pair< string, string>& Grid<string>::getCell(size_t x, size_t y) {
+	return cells[x][y];
+}
 
 void Grid<string>::addCell(size_t x, size_t y, const string& inCell) {
 	if (cells[x][y].first.empty() && cells[x][y].second.empty()) {

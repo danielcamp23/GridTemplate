@@ -24,6 +24,5 @@ int main()
 	cout << registradora.getInfoAt(1, 1) << endl;
 	registradora.addCell(1, 1, 1);
 	cout << registradora.getInfoAt(1, 1) << endl;
-	cout << "height: " << despensa.getHeight() << endl;
 
 }
