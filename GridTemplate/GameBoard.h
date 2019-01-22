@@ -1,17 +1,13 @@
 #pragma once
-#include "Grid.h"
 #include "GamePiece.h"
-
-using std::pair;
-using std::string;
+#include "GamePieceGrid.h"
 
 class GameBoard : public Grid<GamePiece>
 {
 public:
 	GameBoard(const string& inBoardName, const size_t width, const size_t heigth);
-	~GameBoard();
+	virtual ~GameBoard();
 	void movePiece(const pair<size_t, size_t>& orig, const pair<size_t, size_t>& dst);
-
 private:
 	string boardName;
 };

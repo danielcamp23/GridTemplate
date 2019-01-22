@@ -15,12 +15,16 @@ class Grid
 {
 public:
 	Grid(const size_t width = 3, const size_t height = 3);
-	void setCell(size_t x, size_t y, const string& cellName, const T& inCell);
-	pair<string, T>& getCell(size_t x, size_t y);
-	void addCell(size_t x, size_t y, const T& inCell);
-	string getInfoAt(size_t x, size_t y);
+	virtual ~Grid();
+	virtual void setCell(const size_t x, const size_t y, const string& cellName, const T& inCell);
+	virtual pair<string, T>& getCell(const size_t x, const size_t y);
+	virtual void addCell(const size_t x, const size_t y, const T& inCell);
+	virtual string getInfoAt(const size_t x, const size_t y);
+	virtual size_t getKHeight() const;
+	virtual size_t hgtKWidth() const;
 
 private:
+	bool inRange(const size_t x, const size_t y);
 	const size_t kWidth;
 	const size_t kHeight;
 	vector<vector<pair<string, T>>> cells;
@@ -35,25 +39,28 @@ Grid<T>::Grid(const size_t width, const size_t height) : kWidth(width), kHeight(
 	}
 }
 
+template <typename T>
+Grid<T>::~Grid() {}
+
 
 template <typename T>
-void Grid<T>::setCell(size_t x, size_t y, const string& cellName, const T& inCell) {
+void Grid<T>::setCell(const size_t x, const size_t y, const string& cellName, const T& inCell) {
 	cells[x][y] = make_pair(cellName, inCell);
 }
 
 template <typename T>
-pair<string, T>& Grid<T>::getCell(size_t x, size_t y) {
+pair<string, T>& Grid<T>::getCell(const size_t x, const size_t y) {
 	return cells[x][y];
 }
 
 template <typename T>
-void Grid<T>::addCell(size_t x, size_t y, const T& inCell) {
+void Grid<T>::addCell(const size_t x, const size_t y, const T& inCell) {
 	auto tmp = cells[x][y];
 	cells[x][y].second = tmp.second + inCell;
 }
 
 template <typename T>
-string Grid<T>::getInfoAt(size_t x, size_t y) {
+string Grid<T>::getInfoAt(const size_t x, const size_t y) {
 	ostringstream oss;
 	if (cells[x][y].first.empty()) {
 		oss << "cell(" << x << "," << y << ") is empty";
@@ -65,3 +72,23 @@ string Grid<T>::getInfoAt(size_t x, size_t y) {
 
 	return oss.str();
 }
+
+template <typename T>
+size_t Grid<T>::getKHeight() const {
+	return kHeight;
+}
+
+template <typename T>
+size_t Grid<T>::hgtKWidth() const {
+	return kWidth;
+}
+
+template <typename T>
+bool Grid<T>::inRange(const size_t x, const size_t y) {
+	if (x < 0 || x >= kWidth || y < 0 || y >= kHeight) {
+		return false;
+	}
+
+	return true;
+}
+

@@ -2,27 +2,57 @@
 //
 
 #include "pch.h"
-#include <iostream>
-#include "Grid.h"
+//#include "Grid.h"
+#include "GamePieceGrid.h"
 #include "StringGrid.h"
+#include "GameBoard.h"
+
+#include <iostream>
 #include <string>
+#include <utility>
 
 using std::endl;
 using std::cout;
+using std::make_pair;
+
 
 int main()
 {
-	Grid<string> despensa(5, 5);
-	despensa.setCell(0, 1, "Despensa 1", "Arroz");
-	despensa.setCell(1, 1, "Despensa 2", "Panela");
-	despensa.addCell(1, 1, "huevos");
-	cout << despensa.getInfoAt(1, 1) << endl;
+	Grid<string> foodPantry(3, 2);
+	foodPantry.setCell(0, 1, "Box 1", "Milk");
+	foodPantry.setCell(1, 1, "Box 2", "Eggs");
+	foodPantry.addCell(0, 1, "Coffee");
+	foodPantry.addCell(0, 1, "Orange juice");
+	foodPantry.addCell(1, 1, "Flour");
+	cout << foodPantry.getInfoAt(1, 1) << endl;
+	cout << foodPantry.getInfoAt(0, 1) << endl;
 
-	Grid<int> registradora(4, 4);
-	registradora.setCell(0, 1, "Monedas $100", 10);
-	registradora.setCell(1, 1, "Monedas $200", 4);
-	cout << registradora.getInfoAt(1, 1) << endl;
-	registradora.addCell(1, 1, 1);
-	cout << registradora.getInfoAt(1, 1) << endl;
+	cout << "\n";
+	Grid<int> cashRegister(2, 2);
+	cashRegister.setCell(0, 0, "$50", 100);
+	cashRegister.setCell(1, 1, "$100", 100);
+	cashRegister.setCell(1, 0, "$200", 100);
+	cashRegister.setCell(1, 1, "$500", 100);
+	cout << cashRegister.getInfoAt(1, 1) << endl;
+	cashRegister.addCell(1, 1, 75);
+	cout << cashRegister.getInfoAt(1, 1) << endl;
 
+	cout << "\n";
+	cout << "\n";
+
+	/*
+	GameBoard triki("triki", 2, 2);
+	cout << triki.getInfoAt(0, 0) << endl;
+	cout << triki.getInfoAt(0, 1) << endl;
+
+	triki.setCell(0, 0, "", GamePiece("Pawn"));
+	cout << triki.getInfoAt(0, 0) << endl;
+	cout << triki.getInfoAt(0, 1) << endl;
+
+	triki.movePiece(make_pair(0, 0), make_pair(0, 1));
+	cout << triki.getInfoAt(0, 0) << endl;
+	cout << triki.getInfoAt(0, 1) << endl;
+	*/
+
+	return 0;
 }

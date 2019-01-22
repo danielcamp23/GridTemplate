@@ -11,6 +11,8 @@ GamePiece::~GamePiece()
 {
 }
 
+
+
 string GamePiece::getName() const
 {
 	return name;
